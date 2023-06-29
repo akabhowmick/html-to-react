@@ -1,0 +1,49 @@
+/* eslint-disable react/prop-types */
+import React from "react";
+import "./CharacterRating.css";
+
+export const CharacterRating = ({ characters }) => {
+
+  // sort the character data by votes
+  const sortedCharacters = characters.sort(function (a, b) {
+    if (a.votes > b.votes) {
+      return -1;
+    }
+    if (a.votes < b.votes) {
+      return 1;
+    }
+    return 0;
+  });
+
+  //show the top 5 Characters
+  const charactersToDisplay = 5;
+
+  return (
+    <section id="character-ratings">
+      <h4>Top Characters</h4>
+      <table>
+        <tbody>
+          <tr>
+            <th>Name</th>
+            <th>Skillset</th>
+            <th>Votes</th>
+          </tr>
+          {sortedCharacters.map((character, charIndex) => {
+            if (charIndex < charactersToDisplay) {
+              return (
+                <tr
+                  key={character.name}
+                  className={charIndex % 2 === 0 ? "dark" : "light"}
+                >
+                  <td>{character.name}</td>
+                  <td>{character.skillset.toString()}</td>
+                  <td>{character.votes}</td>
+                </tr>
+              );
+            }
+          })}
+        </tbody>
+      </table>
+    </section>
+  );
+};
