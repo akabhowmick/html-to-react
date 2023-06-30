@@ -4,8 +4,7 @@ import "./CharacterRating.css";
 
 export const CharacterRating = ({ characters }) => {
   // sort the character data by votes
-  let sortedCharacters = [...characters];
-  sortedCharacters.sort(function (a, b) {
+  const sortedCharacters = [...characters].sort(function (a, b) {
     return b.votes - a.votes;
   });
 
