@@ -3,16 +3,10 @@ import React from "react";
 import "./CharacterRating.css";
 
 export const CharacterRating = ({ characters }) => {
-
   // sort the character data by votes
-  const sortedCharacters = characters.sort(function (a, b) {
-    if (a.votes > b.votes) {
-      return -1;
-    }
-    if (a.votes < b.votes) {
-      return 1;
-    }
-    return 0;
+  let sortedCharacters = [...characters];
+  sortedCharacters.sort(function (a, b) {
+    return b.votes - a.votes;
   });
 
   //show the top 5 Characters
